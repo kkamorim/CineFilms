@@ -1,0 +1,303 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  background-color: #ffffff;
+}
+
+.sidebar nav ul li a{
+  font-weight: bold;
+}
+
+.icons{
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+  margin-left: 20px;
+}
+
+.logo{
+  height: 100px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+hr{
+  border-radius: 1px;
+  border: 1px solid white;
+  margin-bottom: 20px;
+}
+
+/* ===== Container principal ===== */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 250px;
+  background-color: #0f2a66;
+  color: white;
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  display: block;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.sidebar .following {
+  margin-top: auto;
+  font-size: 14px;
+}
+
+.sidebar .following h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 5px;
+}
+
+/* ===== Conteúdo principal ===== */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ===== Layout do Topo ===== */
+.top-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* destaque ocupa mais espaço */
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Filme em Destaque */
+.featured-movie {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgb(99, 119, 129);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-movie::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg) center/cover no-repeat;
+  filter: blur(10px) brightness(0.6);
+  transform: scale(1.1);          /* evita vazamento nas bordas */
+  z-index: 0;
+}
+
+.featured-movie img.poster {
+  position: relative;
+  z-index: 1;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.featured-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  padding: 15px 20px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.featured-info h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.featured-info p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.featured-info button {
+  background: #0f2a66;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.featured-info button:hover {
+  background: #1c3c8c;
+}
+
+/* ===== Filmes Recentes ===== */
+.recent-movies {
+  border-radius: 12px;
+  padding: 20px;
+ box-shadow: 0 8px 30px rgb(99, 119, 129);
+}
+
+.recent-movies h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #0f2a66;
+}
+
+.recent-movies ul {
+  list-style: none;
+}
+
+.recent-movies li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 12px;
+}
+
+.recent-movies li img {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.recent-movies li h3 {
+  font-size: 16px;
+  margin: 0;
+  color: #0f2a66;
+}
+
+.recent-movies li p {
+  font-size: 13px;
+  color: #555;
+  margin: 2px 0 6px;
+}
+
+.recent-movies li span {
+  font-size: 14px;
+  color: #f39c12; /* cor das estrelas */
+}
+
+.recent-movies .pg {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+  background: #eee;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* ===== Seção de filmes ===== */
+
+.h2-filmes-section {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #0f2a66;
+  padding-left: 10px;
+}
+
+
+.filmes-section{
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.filmes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.filmes-grid2{
+  display: grid;
+  flex-direction: column;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+/* ===== Card de filme ===== */
+.card-filme {
+  width: 300px;
+  height: 350px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  text-align: center;
+  gap: 30px;
+}
+
+.card-filme img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  position: relative;
+  border-radius: 30px;
+  align-items: center;
+}
+
+.card-filme h3 {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0 5px;
+  font-size: 18px;
+  color: #0f2a66;
+}
+
+.card-filme p {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.card-filme:hover {
+  transform: translateY(-6px);
+}
+  
+

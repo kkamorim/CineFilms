@@ -1,0 +1,141 @@
+body{
+    height: auto;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+  background-color: #ffffff;
+}
+
+.h2-tittle{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 20px;
+    text-align: left;
+    color: #0f2a66;
+}
+
+.box-form{
+    background-color:#003566;
+    box-shadow: 0 8px 30px rgb(99, 119, 129);
+    width: 600px;
+    height: 900px;
+    border-radius: 6px;
+    border: 1px solid #F6FCFF;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px;
+}
+
+.box-content{
+    text-align: center;
+    align-items: center;
+}
+
+.box-content label{
+    margin-top: 22px;
+    display: flex;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    justify-content: center;
+}
+
+.box-content input{
+    background-color: #ffffff;
+    border: 1px solid #91daff;
+    box-shadow: 0px 0px 5px #ffffff;
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    height: 35px;
+    border-radius: 20px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    text-align: center;
+    padding: 7px;
+}
+
+.box-content textarea{
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #F6FCFF;
+    box-shadow: 0px 0px 5px hsl(0, 0%, 100%);
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    text-align: center;
+    padding: 7px;
+}
+
+.form-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.form-button a{
+    background-color: #ffffff;
+    border: 1px solid #0f2a66;
+    color: #0f2a66;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.form-button a:hover{
+    background-color: #ffffff;
+    border: 1px solid #0f2a66;
+    color: #0f2a66;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px;
+    text-decoration: none;
+}
+
+.form-button button{
+    background-color: #ffffff;
+    border: 1px solid #0f2a66;
+    color: #0f2a66;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.form-button button:hover{
+    background-color: #ffffff;
+    border: 1px solid #0f2a66;
+    color: #0f2a66;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px;
+}

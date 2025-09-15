@@ -1,0 +1,208 @@
+/* Importa fonte moderna e elegante */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --primary-color: #132e69;
+  --secondary-color: #002366;
+  --text-dark: #1a1a1a;
+  --text-light: #666;
+  --bg-light: #f7f8fa;
+  --white: #fff;
+  --shadow-light: 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-hover: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  line-height: 1.6;
+}
+
+/* ===== Banner ===== */
+.banner {
+  width: 100%;
+}
+.banner-img {
+  background-size: cover;
+  background-position: center;
+  height: clamp(380px, 45vh, 580px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.8) 100%
+  );
+  z-index: 1;
+}
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+}
+.banner-content h2 {
+  color: var(--white);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+
+/* --- QUEM SOMOS --- */
+.quem-somos {
+    background-color: #f0f0f0;
+    color: #000;
+    max-width: 900px;
+    margin: 100px auto 50px auto;
+    padding: 60px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(19, 46, 105, 0.767);
+    text-align: center;
+
+    animation: fade-in 1s ease-in forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.quem-somos h2 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ===== Missão, Visão, Valores ===== */
+.valores {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+  margin-top: 10%;
+}
+.valores .box {
+  background: var(--white);
+  box-shadow: var(--shadow-light);
+  border-radius: 14px;
+  padding: 28px 20px;
+  flex: 1 1 280px;
+  min-width: 260px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.valores .box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  box-shadow: 0px 0px 10px #132e69;
+}
+.valores .box h3 {
+  color: var(--primary-color);
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+.valores .box p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+
+/* ===== Equipe ===== */
+.equipe {
+  max-width: 1100px;
+  margin: 6% auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.equipe h2 {
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+  margin-bottom: 36px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.card {
+  background: var(--white);
+  box-shadow: var(--shadow-light);
+  padding: 28px 20px;
+  border-radius: 14px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--shadow-hover);
+  box-shadow: 0px 0px 10px #00246670;
+}
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;        
+  object-position: center;
+  background-color: #f0f2f5; 
+  border: 2px solid #132e69;
+  margin-bottom: 14px;
+  display: block;          
+}
+
+.card img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 12px #132e69;
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  color: var(--primary-color);
+  margin: 6px 0 4px;
+}
+.card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  .banner-content h2 {
+    font-size: 1.5rem;
+  }
+  .quem-somos p {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 480px) {
+  .banner-img {
+    height: 340px;
+  }
+  .valores {
+    gap: 16px;
+  }
+  .card {
+    width: 220px;
+  }
+}
