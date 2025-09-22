@@ -43,11 +43,11 @@
                 <div class="card-filme">
                     <img src="{{ asset('img/Invocacao.jpg') }}">
                 </div>
-                    <h3>Invocação do Mal 4: O Último Ritual</h3>
-                    <p><b>12 • 2h 29m</b></p>
-                    <p><b>Gênero</b>: Terror</p>
+                <h3>Invocação do Mal 4: O Último Ritual</h3>
+                <p><b>12 • 2h 29m</b></p>
+                <p><b>Gênero</b>: Terror</p>
             </div>
-            
+
             <div class="filmes-grid">
                 <div class="card-filme">
                     <img src="{{ asset('img/quarteto.webp') }}">
@@ -62,8 +62,8 @@
                     <img src="{{ asset('img/Rei_Feira.jpg') }}" >
                 </div>
                 <h3>O Rei da Feira</h3>
-                    <p><b>14 • 1 hr 27 min</b></p>
-                    <p><b>Gênero</b>: Comédia</p>
+                <p><b>14 • 1 hr 27 min</b></p>
+                <p><b>Gênero</b>: Comédia</p>
             </div>
 
             <div class="filmes-grid">
@@ -78,19 +78,26 @@
     </main>
 </div>
 
-<h2 class="h2-filmes-section">Estatísticas</h2>
-<div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top:20px;">
+<h2 class="h2-filmes-section">📊 Estatísticas</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top:20px;">
     <div id="usuariosChart" style="width: 600px; height:400px;"></div>
     <div id="filmesChart" style="width: 600px; height:400px;"></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top:20px;">
+    <div id="classificacaoChart" style="width: 600px; height:400px;"></div>
+    <div style="width: 600px; height:400px; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:bold; border:1px solid #ddd; border-radius:10px;">
+        Total de Usuários: {{ $totalUsuarios }}
+    </div>
 </div>
 
 <!-- Importando ECharts -->
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script>
-    // ------- Gráfico de Usuários (linha) -------
+    // ------- Usuários por mês (linha) -------
     var usuariosMes = @json($usuariosPorMes);
     var usuariosChart = echarts.init(document.getElementById('usuariosChart'));
-
     var optionUsuarios = {
         title: { text: 'Usuários Cadastrados por Mês' },
         tooltip: {},
@@ -106,15 +113,12 @@
             color: '#3b82f6'
         }]
     };
-
     usuariosChart.setOption(optionUsuarios);
 
-    // ------- Gráfico de Filmes (pizza) -------
     var filmesGenero = @json($filmesPorGenero);
     var filmesChart = echarts.init(document.getElementById('filmesChart'));
-
     var optionFilmes = {
-        title: { text: 'Filmes Cadastrados por Categoria', left: 'center' },
+        title: { text: 'Filmes Cadastrados por Gênero', left: 'center' },
         tooltip: { trigger: 'item' },
         series: [{
             type: 'pie',
@@ -125,8 +129,25 @@
             }))
         }]
     };
-
     filmesChart.setOption(optionFilmes);
-</script>
 
+    var filmesClassificacao = @json($filmesPorClassificacao);
+    var classificacaoChart = echarts.init(document.getElementById('classificacaoChart'));
+    var optionClassificacao = {
+        title: { text: 'Filmes por Classificação Etária' },
+        tooltip: {},
+        xAxis: {
+            type: 'category',
+            data: Object.keys(filmesClassificacao).map(c => 'PG-' + c)
+        },
+        yAxis: { type: 'value', name: 'Quantidade' },
+        series: [{
+            data: Object.values(filmesClassificacao),
+            type: 'bar',
+            color: '#10b981'
+        }]
+    };
+    classificacaoChart.setOption(optionClassificacao);
+</script>
 @endsection
+ 

@@ -34,7 +34,6 @@ class PublicController extends Controller
         $filmesRecentes = Filme::latest()->take(3)->get();
         $filmeDestaque = Filme::inRandomOrder()->first();
 
-        // -------- Gráfico de Usuários (linha) --------
         $usuariosPorMes = User::select(
             DB::raw('MONTH(created_at) as mes'),
             DB::raw('COUNT(*) as total')
@@ -43,7 +42,6 @@ class PublicController extends Controller
         ->orderBy(DB::raw('MONTH(created_at)'))
         ->pluck('total', 'mes');
 
-        // -------- Gráfico de Filmes por Gênero (pizza) --------
         $filmesPorGenero = Filme::select(
             'genero',
             DB::raw('COUNT(*) as total')
@@ -51,6 +49,22 @@ class PublicController extends Controller
         ->groupBy('genero')
         ->pluck('total', 'genero');
 
-        return view('admin.dashboard', compact('filmesRecentes', 'filmeDestaque', 'usuariosPorMes', 'filmesPorGenero'));
+        $filmesPorClassificacao = Filme::select(
+            'classificacao',
+            DB::raw('COUNT(*) as total')
+        )
+        ->groupBy('classificacao')
+        ->pluck('total', 'classificacao');
+
+        $totalUsuarios = User::count();
+
+        return view('admin.dashboard', compact(
+            'filmesRecentes',
+            'filmeDestaque',
+            'usuariosPorMes',
+            'filmesPorGenero',
+            'filmesPorClassificacao',
+            'totalUsuarios'
+        ));
     }
 }
