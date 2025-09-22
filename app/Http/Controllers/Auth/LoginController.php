@@ -30,7 +30,7 @@ class LoginController extends Controller
                 return redirect()->intended('/admin/dashboard');
             }
 
-            return redirect()->intended('/home');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors(['email' => 'Credenciais inválidas']);

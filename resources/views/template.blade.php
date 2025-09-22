@@ -30,7 +30,7 @@
             </div>
 
             <ul class="menu">
-                <li><a href="{{ url('/home') }}">Início</a></li>
+                <li><a href="{{ url('/') }}">Início</a></li>
                 <li><a href="{{ url('/filme-em-cartaz.blade') }}">Em Cartaz</a></li>
                 <li><a href="{{ url('/sobre') }}">Bomboniére</a></li>
                 <li><a href="{{ url('/contato') }}">Contato</a></li>

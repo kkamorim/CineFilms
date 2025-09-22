@@ -77,4 +77,56 @@
         </section>
     </main>
 </div>
+
+<h2 class="h2-filmes-section">Estatísticas</h2>
+<div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top:20px;">
+    <div id="usuariosChart" style="width: 600px; height:400px;"></div>
+    <div id="filmesChart" style="width: 600px; height:400px;"></div>
+</div>
+
+<!-- Importando ECharts -->
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script>
+    // ------- Gráfico de Usuários (linha) -------
+    var usuariosMes = @json($usuariosPorMes);
+    var usuariosChart = echarts.init(document.getElementById('usuariosChart'));
+
+    var optionUsuarios = {
+        title: { text: 'Usuários Cadastrados por Mês' },
+        tooltip: {},
+        xAxis: {
+            type: 'category',
+            data: Object.keys(usuariosMes).map(m => 'Mês ' + m)
+        },
+        yAxis: { type: 'value', name: 'Quantidade' },
+        series: [{
+            data: Object.values(usuariosMes),
+            type: 'line',
+            smooth: true,
+            color: '#3b82f6'
+        }]
+    };
+
+    usuariosChart.setOption(optionUsuarios);
+
+    // ------- Gráfico de Filmes (pizza) -------
+    var filmesGenero = @json($filmesPorGenero);
+    var filmesChart = echarts.init(document.getElementById('filmesChart'));
+
+    var optionFilmes = {
+        title: { text: 'Filmes Cadastrados por Categoria', left: 'center' },
+        tooltip: { trigger: 'item' },
+        series: [{
+            type: 'pie',
+            radius: '50%',
+            data: Object.entries(filmesGenero).map(([genero, total]) => ({
+                name: genero,
+                value: total
+            }))
+        }]
+    };
+
+    filmesChart.setOption(optionFilmes);
+</script>
+
 @endsection
