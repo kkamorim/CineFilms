@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
 
 * {
     margin: 0;
@@ -8,395 +8,77 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4; /* Cor de fundo mais neutra */
     color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* --- NAVBAR (PROFISSIONALIZADA) --- */
 .navbar {
-    flex-direction: column;
     background-color: #132e69;
     width: 100%;
-    height: 170px;
+    height: 80px; /* Altura um pouco menor */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
     padding: 0 40px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-}
-
-.header-icons a {
-    color: #333;
-    font-size: 1.3rem;
-    text-decoration: none;
-    margin-left: 10px;
-    transition: color 0.3s;
-}
-
-.header-icons a:hover {
-    color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .logo-container {
-    flex-direction: column;
-    display: block;
+    display: flex;
     align-items: center;
-    gap: 10px;
+    /* Removido o gap para alinhar o logo CINEFILMS */
 }
 
 .logo {
-    height: 120px;
-    width: 120px;
+    height: 50px; 
+    width: 50px;
+    margin-right: 10px;
 }
 
-.brand-name {
+/* Nome da marca (CINEFILMS) ao lado do logo */
+.navbar .logo-container span {
     color: #fff;
-    font-size: 1.5rem;
     font-weight: 700;
+    font-size: 1.2rem;
 }
 
 .menu {
-    text-align: center;
     list-style: none;
     display: flex;
-    gap: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 30px; 
+    margin: 0 auto; 
+    padding: 0;
 }
 
 .menu li a {
     color: #fff;
     font-size: 1rem;
+    font-weight: 400;
     text-decoration: none;
-    transition: color 0.3s ease;
+    padding: 5px 10px;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.menu li a:hover {
+    color: #a0c3ff;
+    border-bottom: 2px solid #a0c3ff;
+    transform: none; /* Removido o scale do li:hover */
+}
+
+/* Ícones de usuário e modal (Corrigido para o layout lateral) */
+.header-icons {
+    display: flex;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    transition: background-color 0.8s ease-in;
-}
-
-.menu li:hover {
-    transform:scale(1.05);
-    animation: backwards 0.8 ease-in-out;
-    cursor: pointer;
-}
-
-.cart {
-    position: relative;
-}
-
-.cart-icon {
-    width: 30px;
-    height: auto;
-    filter: invert(1);
-    cursor: pointer;
-}
-
-.main-content {
-    margin-top: 6%;
-}
-
-
-/* --- CARROSSEL --- */
-.carrossel-container {
-    position: relative;
-    width: 100%;
-    max-width: 1920px;
-    height: 500px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 6px;
-    box-shadow: 0 0 10px #ffffff;
-    animation: fade-in 1s ease-in forwards;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.carrossel-container.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.carrossel-slide {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.fundo {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.carrossel-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* mantém proporção, sem distorcer */
-    display: block;
-    border-radius: 6px;
-}
-
-h1{
-    text-align: center;
-    color: #000000;
-    margin-top: 200px;
-    font-size: 35px;
-}
-
-.carousel3d-container {
-  width: 100%;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-  margin-top: 150px;
-}
-
-.carousel3d {
-  width: 300px;
-  height: 350px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
-}
-
-.carousel3d-card {
-  position: absolute;
-  width: 250px;
-  height: 360px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 25px #000000da;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
-  color: rgb(0, 0, 0);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  justify-content: center;
-  align-items: center;
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
-.carousel3d-card h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-align: center;
-}
-
-.carrossel3d-img {
-  object-fit: cover;
-  justify-content: center;
-  height: 90%;
-  width: 100%;
-  border-radius: 6px;
-}
-
-.carousel-btn {
-  background-color: #143375da;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  padding: 10px;
-  cursor: pointer;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  border-radius: 50%;
-  margin: 350px;
-}
-
-.carousel-btn:hover {
-  background-color: #4c67a0da;
-}
-
-
-
-/* Camada preta por cima */
-.fundo::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.623); /* opacidade da camada preta */
-    z-index: 1;
-}
-
-/* Conteúdo opcional por cima da imagem */
-.fundo-conteudo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    color: white;
-    text-align: center;
-    font-size: 30px;
-}
-
-
-
-.prev,
-.next {
-    position: absolute;
-    top: 50%;
-    font-size: 2rem;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 2;
-    transform: translateY(-50%);
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-
-/* --- PRODUTOS --- */
-.produtos{
-    color: #000000;
-    padding: 40px;
-    background-color: #f0f0f0;
-    text-align: center;
-    margin-top: 200px;
-}
-
-.produtos h2{
-    color: #000000;
-    text-align: center;
-    margin-top: 150px;
-    font-size: 35px;
-}
-
-.grid-produtos {
-    display: flex;
-    justify-content: center;
-    gap: 90px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.card {
-    background-color: #1f1f1f;
-    width: 250px;
-    height: 350px;
-    position: relative;
-    border-radius: 10px;
-    animation: fade-in 1s ease-in forwards;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    margin-top: 50px;
-}
-
-.card.visible{
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #000000;
-}
-
-.filme-desc {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.card h3 {
-    color: #000000;
-    font-size: 20px;
-}
-
-.card p {
-    color: #000000;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-
-/* --- PARCEIROS --- */
-.parceiros {
-    margin-top: 50px;
-    background-color: #f0f0f0;
-    padding: 300px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
-.parceiros h2{
-    color: #000000;
-    text-align: center;
-    font-size: 35px;
-    margin-bottom: 50px;
-}
-
-.logos-parceiros {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
-}
-
-.logos-parceiros img {
-    height: 50px;
-    filter: grayscale(100%);
-    transition: filter 0.3s;
-}
-
-.logos-parceiros img:hover {
-    filter: grayscale(0%);
-}
-
-.footer {
-    background-color: #132e69;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-.user-profile-container {
-    position: relative;
-    display: inline-block;
+    gap: 15px;
 }
 
 .user-avatar {
@@ -406,51 +88,287 @@ h1{
     cursor: pointer;
     object-fit: cover;
     border: 2px solid #fff;
+    transition: transform 0.2s;
 }
 
 .user-modal {
     position: fixed;
-    top: 0;
-    right: -300px; /* fora da tela */
-    width: 300px;
-    height: 100%;
+    top: 80px; /* Inicia abaixo da navbar */
+    right: -300px; 
+    width: 250px; 
+    height: calc(100% - 80px); /* Ocupa o restante da tela */
     background: #fff;
-    box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+    box-shadow: -3px 0 15px rgba(0,0,0,0.3);
     transition: right 0.3s ease;
     z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+}
+.user-modal.active {
+    right: 0;
+}
+.user-modal ul {
+    list-style: none;
+    padding: 10px 0;
+}
+.user-modal ul li a, .user-modal ul li button.logout-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+}
+.user-modal-header {
+    background-color: #132e69;
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
-.user-modal-header {
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.main-content {
+    flex: 1; 
+    margin-top: 80px; /* Ajuste para a nova altura da navbar */
+}
+
+
+/* --- SEÇÃO HERO (IMAGEM ESTÁTICA) --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); 
+    z-index: 1;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    text-align: center;
+}
+.hero-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+
+/* --- FILMES EM CARTAZ (Carrossel 3D) --- */
+h1 {
+    text-align: center;
+    color: #132e69; /* Cor do título principal */
+    margin-top: 60px;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.carousel3d-container {
+    width: 100%;
+    height: 450px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    margin-bottom: 50px;
+}
+
+.carousel3d {
+    width: 300px;
+    height: 350px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.carousel3d-card {
+    position: absolute;
+    width: 250px;
+    height: 380px; 
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10px;
+}
+
+.carousel3d-card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 5px 0 10px 0;
+    color: #333;
+    text-align: center;
+}
+
+.carrossel3d-img {
+    object-fit: cover;
+    height: 85%;
+    width: 90%;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn {
+    background-color: #132e69;
+    border: none;
+    color: white;
+    font-size: 1.5rem; 
+    padding: 15px 20px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    margin: 0 20px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.carousel-btn:hover {
+    background-color: #1e88e5;
+    transform: scale(1.05);
+}
+
+
+/* --- PRÓXIMOS LANÇAMENTOS (CARDS VERTICAIS - Corrigido) --- */
+.produtos{
+    color: #000000;
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.produtos h2{
+    color: #132e69;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.grid-produtos {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    flex-wrap: wrap;
+}
+
+.card {
+    /* Layout vertical, com sombra sutil e fundo branco para o texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px; 
+    height: auto;
+    position: relative;
+    transition: transform 0.3s ease;
+    background-color: #fff; /* Fundo branco para a área de texto */
+    border-radius: 8px; /* Borda suave no card inteiro */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+    width: 100%; 
+    height: 380px; /* Altura fixa do poster */
+    object-fit: cover;
+    display: block;
+    border-radius: 8px 8px 0 0; /* Borda no topo */
+}
+
+.filme-desc {
+    padding: 15px;
+    text-align: left;
+    width: 100%;
+}
+
+.card h3 {
+    color: #132e69;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.card p {
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 2px 0;
+    line-height: 1.4;
+}
+.card p b {
+    font-weight: 700;
+    color: #333;
+}
+
+
+/* --- PARCEIROS --- */
+.parceiros {
+    margin-top: 50px;
+    background-color: #f4f4f4;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.parceiros h2{
+    color: #132e69;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+}
+
+.logos-parceiros {
+    display: flex;
+    justify-content: center;
+    gap: 100px; 
     align-items: center;
 }
 
-.user-modal-header h3 {
-    margin: 0;
+.logos-parceiros img {
+    height: 60px; 
+    filter: grayscale(80%); 
+    opacity: 0.8;
+    transition: filter 0.3s, opacity 0.3s;
 }
 
-.user-modal ul {
-    list-style: none;
+.logos-parceiros img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: #132e69;
+    color: #fff;
+    text-align: center;
     padding: 20px 0;
-}
-
-.user-modal ul li {
-    margin-bottom: 15px;
-}
-
-.user-modal ul li a, .user-modal ul li button.logout-btn {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.user-modal.active {
-    right: 0;
+    margin-top: auto;
+    width: 100%;
+    font-size: 0.9rem;
 }

@@ -23,6 +23,20 @@ class PublicController extends Controller
         return view('filmes', compact('filmes'));
     }
 
+    /**
+     * NOVO MÉTODO: Rota pública para Filmes em Cartaz.
+     */
+    public function filmeEmCartaz()
+    {
+        // Pega todos os filmes
+        $filmes = Filme::all(); 
+        
+        // Retorna uma view de frontend. Certifique-se que você tem esta view.
+        // Crie o arquivo: resources/views/em-cartaz-publico.blade.php
+        return view('filme-em-cartaz', compact('filmes'));
+    }
+
+    // Método 'emCartaz' que parece ser para a área admin, mantido como está
     public function emCartaz()
     {
         $filmes = Filme::all(); 

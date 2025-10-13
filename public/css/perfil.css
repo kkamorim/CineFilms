@@ -1,0 +1,364 @@
+/* perfil.css */
+
+/* --- Importação de Fontes (Para manter o padrão) --- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+/* --- Variáveis (Opcional, mas útil para consistência) --- */
+:root {
+    --primary-color: #132e69; /* Azul do seu header */
+    --secondary-color: #1e88e5; /* Azul de destaque */
+    --background-color: #f4f4f4; /* Fundo principal */
+    --card-bg: #ffffff; /* Fundo do card de perfil */
+    --text-color-dark: #333;
+    --text-color-light: #666;
+    --success-color: #d4edda; /* Verde suave para mensagem de sucesso */
+    --success-border: #c3e6cb;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos da Página de Perfil --- */
+
+.main-content {
+    /* Garante que o conteúdo centralizado tenha espaço */
+    padding: 40px 20px;
+    background-color: var(--background-color);
+}
+
+.perfil-dashboard-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 30px;
+    position: relative;
+    /* Centraliza o conteúdo dentro da página */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título Principal */
+.perfil-dashboard-container h1 {
+    font-size: 1.8rem;
+    color: var(--text-color-dark);
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    /* Remove a margem extra do h1 global se houver */
+    margin-top: 0;
+}
+
+/* Botão de Edição (Lápis) */
+.btn-editar {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-editar:hover {
+    color: var(--primary-color);
+}
+
+/* Mensagem de Sucesso */
+.mensagem-sucesso {
+    width: 95%;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    background-color: var(--success-color);
+    border: 1px solid var(--success-border);
+    color: #155724;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- MODO VISUALIZAÇÃO (perfil-visualizacao) --- */
+.perfil-visualizacao {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+/* Bloco de Informações Pessoais (Lado Esquerdo) */
+.bloco-info-pessoal {
+    width: 40%;
+    min-width: 300px; /* Garante que o bloco não fique muito estreito */
+    padding-right: 30px;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.perfil-foto-bloco img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.info-pessoal-texto {
+    width: 100%;
+    text-align: left;
+}
+
+.info-item {
+    margin-bottom: 15px;
+}
+
+.info-item label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-color-light);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.info-item h2 {
+    font-size: 1.2rem;
+    color: var(--text-color-dark);
+    font-weight: 700;
+    margin: 0;
+}
+
+.info-item p {
+    font-size: 1rem;
+    color: var(--text-color-dark);
+    margin: 0;
+}
+
+/* Bloco de Ações (Lado Direito) */
+.bloco-acoes {
+    width: 60%;
+    padding-left: 30px;
+}
+
+.bloco-titulo {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.acao-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.acao-link:hover {
+    background-color: #eef2f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.acao-link i {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+}
+
+.acao-link .seta {
+    font-size: 0.8rem;
+    color: var(--text-color-light);
+    margin-right: 0;
+}
+
+
+/* --- MODO EDIÇÃO (perfil-edicao) --- */
+.perfil-edicao {
+    width: 100%;
+    max-width: 500px; /* Limita a largura do formulário para melhor estética */
+    padding-top: 20px;
+}
+
+.perfil-edicao > div {
+    margin-bottom: 20px;
+}
+
+.perfil-foto-edicao {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.perfil-foto-edicao img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #e0e0e0;
+    transition: border-color 0.3s;
+}
+
+.perfil-edicao label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+    margin-bottom: 5px;
+}
+
+.perfil-edicao input[type="text"],
+.perfil-edicao input[type="email"],
+.perfil-edicao input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.perfil-edicao input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+    outline: none;
+}
+
+/* Estilo do Input File Personalizado */
+.input-file-custom {
+    margin-bottom: 30px;
+}
+.file-control-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.custom-file-upload {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.custom-file-upload:hover {
+    background-color: #1e88e5;
+}
+.file-name-display {
+    color: var(--text-color-light);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+
+/* Linha e Instrução de Senha */
+.senha-hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 15px 0 20px 0;
+}
+.senha-instrucao {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Botões de Ação (Salvar/Cancelar) */
+.btn-salvar {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 10px;
+}
+
+.btn-salvar:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-cancelar {
+    width: 100%;
+    padding: 15px;
+    background-color: #e0e0e0;
+    color: var(--text-color-dark);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #ccc;
+}
+
+/* Classe de Esconder */
+.hidden {
+    display: none !important;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .perfil-visualizacao {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .bloco-info-pessoal {
+        width: 100%;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 30px;
+        min-width: unset;
+    }
+    
+    .bloco-info-pessoal .info-pessoal-texto {
+        text-align: center;
+    }
+    .info-item h2, .info-item p {
+        text-align: center;
+    }
+    .info-item label {
+        text-align: center;
+    }
+
+    .bloco-acoes {
+        width: 100%;
+        padding-left: 0;
+    }
+    .perfil-dashboard-container {
+        padding: 30px 15px;
+    }
+    .btn-editar {
+        top: 20px;
+        right: 20px;
+    }
+    .file-control-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

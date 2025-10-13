@@ -1,56 +1,32 @@
-.carrossel-container {
+/* filmes.css */
+
+/* --- Hero Section (Ajustado para o novo HTML) --- */
+.hero-section {
     position: relative;
     width: 100%;
-    max-width: 1920px;
     height: 500px;
-    margin: 0 auto;
     overflow: hidden;
-    border-radius: 6px;
-    box-shadow: 0 0 10px #ffffff;
-    animation: fade-in 1s ease-in forwards;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.carrossel-container.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.carrossel-slide {
-    display: flex;
+.hero-image {
     width: 100%;
     height: 100%;
-}
-
-.fundo {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.carrossel-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* mantém proporção, sem distorcer */
+    object-fit: cover;
     display: block;
-    border-radius: 6px;
 }
 
-/* Camada preta por cima */
-.fundo::after {
+.hero-overlay {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.623); /* opacidade da camada preta */
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
 }
 
-/* Conteúdo opcional por cima da imagem */
-.fundo-conteudo {
+.hero-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -58,25 +34,44 @@
     z-index: 2;
     color: white;
     text-align: center;
-    font-size: 20px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* --- Seletor de Programação --- */
+.week-selector-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px; /* Aumenta a distância do hero */
+    margin-bottom: 50px; /* Aumenta a distância dos filmes */
+}
+
+.week-selector-container h2 {
+    color: #132e69;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
 .week-selector {
-    background-color: transparent;
     display: flex;
     align-items: center;
-    margin-top: 100px;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
 }
 
-.week-selector h2{
-    color: #132e69;
-    margin-right: 100px;
-    font-size: 30px;
-}
-
-.day {
+.day, .mes {
     background-color: #eaecfa;
     border: 2px solid #26419b;
     border-radius: 8px;
@@ -84,90 +79,103 @@
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-    color: #999;
-    justify-content: space-between;
+    color: #444;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-.day:hover{
+.day:hover, .mes:hover {
     background-color: #132e69;
+    color: #fff;
+    border-color: #132e69;
 }
 
 .day.selected {
     background-color: #132e69;
-    border: 1px solid #ffffff;
     color: #fff;
-    box-shadow: 0px 0px 10px #132e69 ;
+    border-color: #132e69;
+    box-shadow: 0px 4px 10px rgba(19, 46, 105, 0.4);
 }
 
-.mes{
-    background-color: #eaecfa;
-    border: 2px solid #b0b7cf;
-    border-radius: 8px;
-    padding: 10px 16px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: bold;
-    color: #999;
-    justify-content: space-between; 
+/* --- Lista de Filmes --- */
+.filmes-lista-container {
+    max-width: 1000px; /* Centraliza o conteúdo da lista */
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .filme {
-    margin-left: 100px;
-    color: #fff;
     display: flex;
-    gap: 20px;
+    gap: 30px;
     background: transparent;
-    width: 1300px;
-    padding-bottom: 100px;
-    margin-top: 100px;
-    border-bottom: 1px solid #132e69;
-    animation: fade-in 1s ease-in forwards;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    padding: 30px 0;
+    border-bottom: 1px solid #e0e0e0;
+    opacity: 1; /* Remove a animação de fade in */
+    transform: translateY(0);
+    transition: transform 0.3s;
 }
 
-
-.filme:hover {
-    transform: translateY(-5px);
+.filme:last-child {
+    border-bottom: none;
 }
 
 .filme img {
-    width: 120px;
+    width: 150px; /* Aumenta o tamanho do poster */
+    height: 225px; /* Proporção 1.5 para posters de cinema */
+    object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px #000000;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filme-desc {
+    flex: 1; /* Ocupa o espaço restante */
+    text-align: left;
 }
 
 .filme-desc h3 {
     margin: 0 0 10px;
-    font-size: 20px;
-    color: #000000;
+    font-size: 1.8rem;
+    color: #132e69;
+    font-weight: 700;
 }
 
 .filme-desc p {
     margin: 4px 0;
-    color: #000000;
+    color: #555;
+    font-size: 1rem;
 }
 
-.filmes-lista {
-    max-width: 800px;
+.filme-desc p b {
+    color: #333;
+}
+
+.filme-desc .sinopse {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 15px;
 }
 
 .filme button {
     background-color: #132e69;
-    border: 1px solid #7aa4ff;
+    border: none;
     color: rgb(255, 255, 255);
-    padding: 8px 12px;
-    margin-top: 10px;
-    border-radius: 4px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.8s;
-    
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .filme button:hover {
-    background-color: #132e69;
-    border: 1px solid #ffffff;
-    box-shadow: 0px 0px 10px #132e69;
+    background-color: #1e88e5;
+    box-shadow: 0px 4px 10px rgba(30, 136, 229, 0.3);
+}
+
+.sem-filmes {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
