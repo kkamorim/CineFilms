@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\CadastroController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ExportController;
 
 // Rotas Públicas (sem autenticação)
 Route::get('/', [PublicController::class, 'home'])->name('home');
@@ -26,12 +26,16 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Área de Admin (protegida e com prefixo 'admin')
-Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/dashboard', [PublicController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/em-cartaz', [PublicController::class, 'emCartaz'])->name('admin.emcartaz');
-    Route::resource('filmes', FilmeController::class)->names('admin.filmes');
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [PublicController::class, 'dashboard'])->name('dashboard');
+    Route::get('/em-cartaz', [PublicController::class, 'emCartaz'])->name('emcartaz');
+    
+    // Rotas de Exportação
+    Route::get('/export/csv', [ExportController::class, 'exportCSV'])->name('export.csv');
+    Route::get('/export/pdf', [ExportController::class, 'exportPDF'])->name('export.pdf');
+    
+    Route::resource('filmes', FilmeController::class)->names('filmes');
 });
-
 
 Route::get('/users', [UserController::class, 'index']);
 
