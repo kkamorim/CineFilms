@@ -1,12 +1,11 @@
 @extends('template')
 
-@section('title', 'Início')
+@section('title', __('messages.home'))
 
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 @section('content')
 
-<!-- HERO CARROSSEL COM OVERLAY ANIMADO -->
 <section class="hero-carousel">
     <div class="carousel-wrapper">
         <div class="carousel-track">
@@ -14,11 +13,11 @@
                 <img src="{{ asset('img/sala3.png') }}" alt="Cinema" class="hero-img"/>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <h1 class="hero-title">Cinefilms</h1>
-                    <p class="hero-subtitle">A melhor experiência de cinema da sua vida</p>
+                    <h1 class="hero-title">{{ __('messages.hero.title') }}</h1>
+                    <p class="hero-subtitle">{{ __('messages.hero.subtitle') }}</p>
                     <div class="hero-cta">
-                        <a href="{{ route('filmes') }}" class="btn-primary">Ver Filmes</a>
-                        <a href="{{ url('/sobre') }}" class="btn-secondary">Bomboniére</a>
+                        <a href="{{ route('filmes') }}" class="btn-primary">{{ __('messages.hero.see_movies') }}</a>
+                        <a href="{{ url('/sobre') }}" class="btn-secondary">{{ __('messages.hero.confectionery') }}</a>
                     </div>
                 </div>
             </div>
@@ -29,12 +28,11 @@
     </div>
 </section>
 
-<!-- FILMES EM CARTAZ COM CARROSSEL 3D MELHORADO -->
 <section class="featured-movies">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Filmes em Cartaz</h2>
-            <p class="section-subtitle">Descubra os melhores filmes em exibição</p>
+            <h2 class="section-title">{{ __('messages.movies.in_theaters') }}</h2>
+            <p class="section-subtitle">{{ __('messages.movies.in_theaters_subtitle') }}</p>
         </div>
 
         <div class="carousel-3d-wrapper">
@@ -51,17 +49,17 @@
                                     <img src="{{ asset('storage/' . $filme->imagem) }}" alt="{{ $filme->titulo }}">
                                     <div class="movie-overlay">
                                         <i class="fas fa-play-circle"></i>
-                                        <span>Ver Detalhes</span>
+                                        <span>{{ __('messages.movies.see_details') }}</span>
                                     </div>
                                 </div>
                                 <div class="movie-info">
                                     <h3 class="movie-title">{{ $filme->titulo }}</h3>
-                                    <div class="movie-badge">Em Cartaz</div>
+                                    <div class="movie-badge">{{ __('messages.movies.badge_in_theaters') }}</div>
                                 </div>
                             </a>
                         </div>
                     @empty
-                        <p class="no-movies">Nenhum filme em cartaz no momento.</p>
+                        <p class="no-movies">{{ __('messages.movies.no_movies') }}</p>
                     @endforelse
                 </div>
             </div>
@@ -73,23 +71,22 @@
     </div>
 </section>
 
-<!-- PRÓXIMOS LANÇAMENTOS COM CARDS MODERNOS -->
 <section class="upcoming-movies">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Próximos Lançamentos</h2>
-            <p class="section-subtitle">Fique por dentro das estreias que vem por aí</p>
+            <h2 class="section-title">{{ __('messages.upcoming.title') }}</h2>
+            <p class="section-subtitle">{{ __('messages.upcoming.subtitle') }}</p>
         </div>
 
         <div class="movies-grid">
             <article class="movie-card modern">
                 <div class="card-image">
                     <img src="{{ asset('img/Invocacao.jpg') }}" alt="Invocação do Mal 4">
-                    <div class="card-badge">Em Breve</div>
+                    <div class="card-badge">{{ __('messages.upcoming.badge_coming_soon') }}</div>
                     <div class="card-overlay">
                         <button class="btn-watch">
                             <i class="fas fa-ticket-alt"></i>
-                            Comprar Ingresso
+                            {{ __('messages.upcoming.buy_ticket') }}
                         </button>
                     </div>
                 </div>
@@ -116,11 +113,11 @@
             <article class="movie-card modern">
                 <div class="card-image">
                     <img src="{{ asset('img/Rei_Feira.jpg') }}" alt="O Rei da Feira">
-                    <div class="card-badge">Em Breve</div>
+                    <div class="card-badge">{{ __('messages.upcoming.badge_coming_soon') }}</div>
                     <div class="card-overlay">
                         <button class="btn-watch">
                             <i class="fas fa-ticket-alt"></i>
-                            Comprar Ingresso
+                            {{ __('messages.upcoming.buy_ticket') }}
                         </button>
                     </div>
                 </div>
@@ -147,11 +144,11 @@
             <article class="movie-card modern">
                 <div class="card-image">
                     <img src="{{ asset('img/Caras_Malvados.webp') }}" alt="Os Caras Malvados 2">
-                    <div class="card-badge">Em Breve</div>
+                    <div class="card-badge">{{ __('messages.upcoming.badge_coming_soon') }}</div>
                     <div class="card-overlay">
                         <button class="btn-watch">
                             <i class="fas fa-ticket-alt"></i>
-                            Comprar Ingresso
+                            {{ __('messages.upcoming.buy_ticket') }}
                         </button>
                     </div>
                 </div>
@@ -187,43 +184,42 @@
                 <div class="benefit-icon">
                     <i class="fas fa-couch"></i>
                 </div>
-                <h3>Poltronas Premium</h3>
-                <p>Conforto excepcional com poltronas reclináveis</p>
+                <h3>{{ __('messages.benefits.premium_seats.title') }}</h3>
+                <p>{{ __('messages.benefits.premium_seats.description') }}</p>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-icon">
                     <i class="fas fa-film"></i>
                 </div>
-                <h3>Projeção 4K</h3>
-                <p>Imagem e som de última geração</p>
+                <h3>{{ __('messages.benefits.projection_4k.title') }}</h3>
+                <p>{{ __('messages.benefits.projection_4k.description') }}</p>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-icon">
                     <i class="fas fa-popcorn"></i>
                 </div>
-                <h3>Bomboniére Premium</h3>
-                <p>Snacks e bebidas exclusivas</p>
+                <h3>{{ __('messages.benefits.premium_confectionery.title') }}</h3>
+                <p>{{ __('messages.benefits.premium_confectionery.description') }}</p>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-icon">
                     <i class="fas fa-mobile-alt"></i>
                 </div>
-                <h3>Ingresso Digital</h3>
-                <p>Compre pelo app e evite filas</p>
+                <h3>{{ __('messages.benefits.digital_ticket.title') }}</h3>
+                <p>{{ __('messages.benefits.digital_ticket.description') }}</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PARCEIROS COM ANIMAÇÃO -->
 <section class="partners">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Nossos Parceiros</h2>
-            <p class="section-subtitle">Trabalhamos com as melhores redes de cinema</p>
+            <h2 class="section-title">{{ __('messages.partners.title') }}</h2>
+            <p class="section-subtitle">{{ __('messages.partners.subtitle') }}</p>
         </div>
         <div class="partners-grid">
             <div class="partner-logo">
@@ -245,7 +241,7 @@
 
 @section('scripts')
 <script>
-// ===== CARROSSEL 3D AVANÇADO =====
+
 document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.querySelector('.carousel-3d');
     const cards = document.querySelectorAll('.movie-card-3d');
@@ -260,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isAnimating = false;
 
-    // Posicionar cards inicialmente
     function positionCards() {
         cards.forEach((card, i) => {
             const angle = (i * angleStep) * (Math.PI / 180);
@@ -269,13 +264,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${-i * angleStep}deg)`;
             
-            // Ajustar opacidade baseado na posição
             const distanceFromCenter = Math.abs(i - currentIndex);
             const normalizedDistance = Math.min(distanceFromCenter, total - distanceFromCenter);
             const opacity = 1 - (normalizedDistance / total) * 0.7;
             card.style.opacity = opacity;
             
-            // Card central em destaque
             if (i === currentIndex) {
                 card.style.zIndex = 100;
                 card.classList.add('active');
@@ -317,7 +310,6 @@ document.addEventListener('DOMContentLoaded', function() {
     positionCards();
 });
 
-// ===== SCROLL INDICATOR =====
 window.addEventListener('scroll', function() {
     const indicator = document.querySelector('.scroll-indicator');
     if (indicator) {
@@ -325,7 +317,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// ===== ANIMAÇÃO DE ENTRADA DOS CARDS =====
 const observerOptions = {
     threshold: 0.2,
     rootMargin: '0px 0px -100px 0px'

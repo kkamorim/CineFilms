@@ -11,18 +11,16 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('img/cinefilms2.png') }}">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome - VERSÃO CORRIGIDA -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- CSS Local -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     @yield('head')
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
-          integrity="sha512-bdPjeF7O3pckYpFZa5VlE2R9OwMgiGvKQQfnrH/2+2Jh5p+zKpc3rTNN+ItzXn+vZypqVjovT+QmtB5fAoAdw==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -106,7 +104,34 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; {{ date('Y') }} Cinefilms. Todos os direitos reservados.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Cinefilms</h4>
+                    <p>A melhor experiência cinematográfica</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-envelope"></i> contato@cinefilms.com.br</p>
+                    <p><i class="fas fa-phone"></i> (19) 3251-1234</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ date('Y') }} Cinefilms. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
 
