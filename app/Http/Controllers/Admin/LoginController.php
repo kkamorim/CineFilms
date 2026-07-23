@@ -28,13 +28,13 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            // Apenas GM/Admin
-            if ($user->is_gm) {
-                return redirect()->intended('/admin/dashboard'); // GM
+            // Apenas GM, Admin ou Coordenador
+            if ($user->is_gm || in_array($user->role, ['admin', 'coordenador'])) {
+                return redirect()->intended('/admin/dashboard');
             }
 
             Auth::logout();
-            return back()->withErrors(['email' => 'Você não é GM']);
+            return back()->withErrors(['email' => 'Acesso restrito a administradores e coordenadores']);
         }
 
         return back()->withErrors(['email' => 'Credenciais inválidas']);

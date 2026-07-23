@@ -56,14 +56,14 @@ class UserController extends Controller
     // Mostrar ingressos do usuário
     public function meusIngressos()
     {
-        $tickets = auth()->user()->tickets;
+        $tickets = auth()->user() ? (auth()->user()->tickets ?? collect()) : collect();
         return view('meus-ingressos', compact('tickets'));
     }
 
     // Mostrar histórico de filmes assistidos
     public function historico()
     {
-        $history = auth()->user()->histories;
+        $history = auth()->user() ? (auth()->user()->histories ?? collect()) : collect();
         return view('historico', compact('history'));
     }
 

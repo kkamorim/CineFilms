@@ -9,6 +9,8 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExportController;
 
+use App\Http\Controllers\CheckoutController;
+
 // Rotas Públicas (sem autenticação)
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/filmes', [PublicController::class, 'filmes'])->name('filmes');
@@ -20,6 +22,10 @@ Route::post('/contato', [ContatoController::class, 'store']);
 
 Route::view('/sobre', 'sobre')->name('sobre');
 Route::view('/carrinho', 'carrinho')->name('carrinho');
+
+// Checkout e Gateway de Pagamento
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/processar', [CheckoutController::class, 'processar'])->name('checkout.processar');
 
 // Rotas de Autenticação
 Route::get('/register', [CadastroController::class, 'showRegisterForm'])->name('register');
@@ -33,8 +39,8 @@ Route::get('/admin/login', [App\Http\Controllers\Admin\LoginController::class, '
 Route::post('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'login']);
 Route::post('/admin/logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
-// Área de Admin (protegida e com prefixo 'admin')
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+// Área de Admin (protegida por autenticação + verificação GM)
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [PublicController::class, 'dashboard'])->name('dashboard');
     Route::get('/em-cartaz', [PublicController::class, 'emCartaz'])->name('emcartaz');
     
