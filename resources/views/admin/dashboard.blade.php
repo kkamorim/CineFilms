@@ -42,7 +42,7 @@
 <div class="stats-grid">
     <div class="stat-card">
         <h3>Total de Filmes</h3>
-        <div class="value">{{ $totalUsuarios }}</div>
+        <div class="value">{{ $totalFilmes ?? $filmesRecentes->count() }}</div>
     </div>
     <div class="stat-card">
         <h3>Usuários Cadastrados</h3>

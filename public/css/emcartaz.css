@@ -796,6 +796,46 @@ body {
     }
 }
 
+@media (max-width: 480px) {
+    .filter-section {
+        padding: 15px;
+    }
+
+    .search-input {
+        padding: 12px 15px 12px 40px;
+        font-size: 0.9rem;
+    }
+
+    .card-image-wrapper {
+        height: 300px;
+    }
+
+    .conteudo-do-cartao {
+        padding: 18px;
+    }
+
+    .movie-title {
+        font-size: 1.2rem;
+    }
+
+    .acoes-filme {
+        flex-direction: column;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+
+    .modal-content {
+        padding: 25px 20px;
+    }
+
+    .modal-title {
+        font-size: 1.4rem;
+    }
+}
+
 /* ===== LOADING ANIMATION ===== */
 @keyframes shimmer {
     0% {

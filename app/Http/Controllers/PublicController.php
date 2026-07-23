@@ -71,6 +71,7 @@ class PublicController extends Controller
         ->pluck('total', 'classificacao');
 
         $totalUsuarios = User::count();
+        $totalFilmes = Filme::count();
 
         return view('admin.dashboard', compact(
             'filmesRecentes',
@@ -78,7 +79,8 @@ class PublicController extends Controller
             'usuariosPorMes',
             'filmesPorGenero',
             'filmesPorClassificacao',
-            'totalUsuarios'
+            'totalUsuarios',
+            'totalFilmes'
         ));
     }
 }

@@ -720,3 +720,36 @@
         font-size: 2rem;
     }
 }
+
+@media (max-width: 576px) {
+    .login-container {
+        padding: 0;
+    }
+
+    .login-wrapper {
+        border-radius: 20px;
+    }
+
+    .login-form-section {
+        padding: 30px 20px;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    .form-input {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    .btn-submit {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .social-proof {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

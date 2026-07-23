@@ -681,6 +681,18 @@
     transition: all 0.5s ease;
     position: relative;
     z-index: 1;
+    object-fit: cover;
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+img.team-avatar {
+    object-fit: cover;
 }
 
 .team-card:hover .team-avatar {
@@ -696,6 +708,12 @@
     background: rgba(255, 215, 0, 0.2);
     border-color: var(--cinema-gold);
     box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+}
+
+img.team-avatar.featured-avatar {
+    object-fit: cover;
+    background: none;
+    backdrop-filter: none;
 }
 
 .team-card.featured-member .team-image-wrapper {

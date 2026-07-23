@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cinefilms - A melhor experiência de cinema">
-    <meta name="keywords" content="cinema, filmes, ingressos, bomboniére">
+    <meta name="keywords" content="cinema, filmes, ingressos, bombonnière">
     <title>@yield('title', 'Cinefilms - Cinema')</title>
 
     <!-- Favicon -->
@@ -33,6 +33,12 @@
                     <img class="logo" src="{{ asset('img/cinefilms2.png') }}" alt="Cinefilms Logo">
                 </a>
             </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
             <ul class="menu">
                 <li><a href="{{ url('/') }}">Início</a></li>
@@ -173,6 +179,31 @@
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && userModal.classList.contains('active')) {
                         userModal.classList.remove('active');
+                    }
+                });
+            }
+
+            // ===== HAMBURGER MENU TOGGLE =====
+            const menuToggle = document.getElementById('menuToggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    menu.classList.toggle('active');
+                });
+
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        menu.classList.remove('active');
+                    });
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                        menuToggle.classList.remove('active');
+                        menu.classList.remove('active');
                     }
                 });
             }

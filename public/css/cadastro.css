@@ -744,6 +744,49 @@
     }
 }
 
+@media (max-width: 576px) {
+    .register-container {
+        padding: 0;
+    }
+
+    .register-wrapper {
+        border-radius: 20px;
+    }
+
+    .register-form-section {
+        padding: 30px 20px;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    .photo-upload-section {
+        padding: 15px;
+    }
+
+    .photo-preview {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+
+    .photo-upload-label {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+    }
+
+    .form-input {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    .btn-submit {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
 /* ===== SCROLLBAR CUSTOM ===== */
 .register-form-section::-webkit-scrollbar {
     width: 8px;

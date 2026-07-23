@@ -115,8 +115,8 @@
             <div class="card-filme" 
                  data-title="{{ strtolower($filme->titulo) }}"
                  data-genre="{{ $filme->genero }}"
-                 data-room="{{ $filme->sala }}"
-                 data-time="{{ $filme->horario }}">
+                 data-room="{{ $filme->sala ?? '' }}"
+                 data-time="{{ $filme->horario ?? '' }}">
                 
                 <div class="card-image-wrapper">
                     <img src="{{ $filme->imagem ? asset('storage/' . $filme->imagem) : 'https://via.placeholder.com/300x450?text=Sem+Imagem' }}" 
@@ -142,11 +142,11 @@
                     <div class="movie-info">
                         <div class="info-item">
                             <i class="fas fa-door-open"></i>
-                            <span>{{ $filme->sala }}</span>
+                            <span>{{ $filme->sala ?? 'N/A' }}</span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-clock"></i>
-                            <span>{{ \Carbon\Carbon::parse($filme->horario)->format('H:i') }}</span>
+                            <span>{{ $filme->horario ? \Carbon\Carbon::parse($filme->horario)->format('H:i') : '--:--' }}</span>
                         </div>
                         @if($filme->duracao)
                         <div class="info-item">

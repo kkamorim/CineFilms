@@ -887,6 +887,38 @@
     }
 }
 
+@media (max-width: 480px) {
+    .hero-title-contact {
+        font-size: 1.5rem;
+    }
+
+    .hero-badge-contact {
+        font-size: 0.85rem;
+        padding: 8px 18px;
+    }
+
+    .contact-form-side {
+        padding: 20px 15px;
+    }
+
+    .form-header-contact h2 {
+        font-size: 1.3rem;
+    }
+
+    .btn-submit-contact {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .faq-question {
+        padding: 18px 20px;
+    }
+
+    .faq-question h3 {
+        font-size: 1rem;
+    }
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes pulse {
     0%, 100% {

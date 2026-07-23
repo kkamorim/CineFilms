@@ -20,5 +20,10 @@ class Filme extends Model
         'imagem',
         'descricao',
         'classificacao',
+        'sala',
+        'horario',
+        'duracao',
+        'data_inicio',
+        'data_fim',
     ];
 }

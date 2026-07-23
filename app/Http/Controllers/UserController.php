@@ -66,4 +66,34 @@ class UserController extends Controller
         $history = auth()->user()->histories;
         return view('historico', compact('history'));
     }
+
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function perfilApi()
+    {
+        $user = auth()->user();
+        return response()->json($user);
+    }
+
+    public function atualizarPerfilApi(Request $request)
+    {
+        $user = auth()->user();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return response()->json(['message' => 'Perfil atualizado com sucesso!', 'data' => $user]);
+    }
+
+    public function indexApi()
+    {
+        return response()->json(User::all());
+    }
 }

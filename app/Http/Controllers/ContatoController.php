@@ -13,7 +13,7 @@ class ContatoController extends Controller
     }
 
     // Web: salvar contato via formulário
-    public function index(Request $dadosContato)
+    public function store(Request $dadosContato)
     {
         $dadosContato->validate([
             'nome' => 'required',

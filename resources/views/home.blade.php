@@ -241,70 +241,98 @@
 
 @section('scripts')
 <script>
-
 document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.querySelector('.carousel-3d');
-    const cards = document.querySelectorAll('.movie-card-3d');
-    const prevBtn = document.querySelector('.prev-control');
+    const cards = Array.from(document.querySelectorAll('.movie-card-3d'));
     const nextBtn = document.querySelector('.next-control');
-    
+    const prevBtn = document.querySelector('.prev-control');
+
     if (!carousel || cards.length === 0) return;
-    
+
     const total = cards.length;
-    const angleStep = 360 / total;
-    const radius = 450;
     let currentIndex = 0;
     let isAnimating = false;
 
-    function positionCards() {
-        cards.forEach((card, i) => {
-            const angle = (i * angleStep) * (Math.PI / 180);
-            const x = Math.sin(angle) * radius;
-            const z = Math.cos(angle) * radius;
-            
-            card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${-i * angleStep}deg)`;
-            
-            const distanceFromCenter = Math.abs(i - currentIndex);
-            const normalizedDistance = Math.min(distanceFromCenter, total - distanceFromCenter);
-            const opacity = 1 - (normalizedDistance / total) * 0.7;
-            card.style.opacity = opacity;
-            
-            if (i === currentIndex) {
-                card.style.zIndex = 100;
-                card.classList.add('active');
-            } else {
-                card.style.zIndex = 50 - normalizedDistance;
-                card.classList.remove('active');
-            }
+    // Coverflow layout config
+    const CARD_GAP     = 290;   // px between card centers
+    const SIDE_SCALE   = 0.78;  // scale for adjacent cards
+    const SIDE_OPACITY = 0.55;
+
+    // Build dot indicators
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
+    for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Ir para filme ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+    }
+    carousel.closest('.carousel-3d-wrapper').appendChild(dotsContainer);
+
+    function updateDots() {
+        dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
         });
     }
 
-    function rotateCarousel(direction) {
+    function positionCards() {
+        cards.forEach((card, i) => {
+            let offset = i - currentIndex;
+            // Wrap around for circular effect
+            if (offset > total / 2)  offset -= total;
+            if (offset < -total / 2) offset += total;
+
+            const translateX = offset * CARD_GAP;
+            const isActive   = offset === 0;
+            const absOffset  = Math.abs(offset);
+            const visible    = absOffset <= 2;
+
+            const scale   = isActive ? 1 : Math.max(0.55, SIDE_SCALE - Math.max(0, absOffset - 1) * 0.06);
+            const opacity = isActive ? 1 : Math.max(0, SIDE_OPACITY - Math.max(0, absOffset - 1) * 0.2);
+            const zIndex  = isActive ? 10 : Math.max(0, 5 - absOffset);
+
+            card.style.transform    = `translateX(${translateX}px) scale(${scale})`;
+            card.style.opacity      = visible ? opacity : 0;
+            card.style.zIndex       = zIndex;
+            card.style.pointerEvents = isActive ? 'auto' : 'none';
+            card.classList.toggle('active', isActive);
+        });
+
+        updateDots();
+    }
+
+    function goTo(index) {
         if (isAnimating) return;
         isAnimating = true;
+        currentIndex = ((index % total) + total) % total;
+        positionCards();
+        setTimeout(() => { isAnimating = false; }, 520);
+    }
 
-        currentIndex = direction === 'next' 
-            ? (currentIndex + 1) % total 
+    function rotateCarousel(direction) {
+        const next = direction === 'next'
+            ? (currentIndex + 1) % total
             : (currentIndex - 1 + total) % total;
-
-        const rotation = -currentIndex * angleStep;
-        carousel.style.transform = `rotateY(${rotation}deg)`;
-
-        setTimeout(() => {
-            positionCards();
-            isAnimating = false;
-        }, 500);
+        goTo(next);
     }
 
     nextBtn?.addEventListener('click', () => rotateCarousel('next'));
     prevBtn?.addEventListener('click', () => rotateCarousel('prev'));
 
-    // Auto-rotate
-    let autoRotate = setInterval(() => rotateCarousel('next'), 4000);
+    // Touch / swipe support
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    carousel.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) rotateCarousel(diff > 0 ? 'next' : 'prev');
+    });
 
+    // Auto-rotate
+    let autoRotate = setInterval(() => rotateCarousel('next'), 4500);
     carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
     carousel.addEventListener('mouseleave', () => {
-        autoRotate = setInterval(() => rotateCarousel('next'), 4000);
+        autoRotate = setInterval(() => rotateCarousel('next'), 4500);
     });
 
     positionCards();

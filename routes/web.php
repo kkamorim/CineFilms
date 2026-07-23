@@ -16,7 +16,10 @@ Route::get('/filme-em-cartaz', [PublicController::class, 'filmeEmCartaz'])->name
 
 Route::get('/quem-somos', fn() => view('quem-somos'));
 Route::get('/contato', [ContatoController::class, 'create']);
-Route::post('/contato', [ContatoController::class, 'index']);
+Route::post('/contato', [ContatoController::class, 'store']);
+
+Route::view('/sobre', 'sobre')->name('sobre');
+Route::view('/carrinho', 'carrinho')->name('carrinho');
 
 // Rotas de Autenticação
 Route::get('/register', [CadastroController::class, 'showRegisterForm'])->name('register');
@@ -24,6 +27,11 @@ Route::post('/register', [CadastroController::class, 'register']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Rotas de Login Admin
+Route::get('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'login']);
+Route::post('/admin/logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
 // Área de Admin (protegida e com prefixo 'admin')
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {

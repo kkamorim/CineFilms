@@ -13,7 +13,7 @@ class RegisterController extends Controller
     // Mostrar o formulário de cadastro
     public function showRegistrationForm()
     {
-        return view('auth.register'); // resources/views/auth/register.blade.php
+        return view('register'); // resources/views/register.blade.php
     }
 
     // Processar cadastro

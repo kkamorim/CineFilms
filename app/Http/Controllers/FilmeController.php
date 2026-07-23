@@ -27,6 +27,11 @@ class FilmeController extends Controller
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'descricao' => 'nullable|string',
             'classificacao' => 'required|integer',
+            'sala' => 'nullable|string',
+            'horario' => 'nullable|string',
+            'duracao' => 'nullable|integer',
+            'data_inicio' => 'nullable|date',
+            'data_fim' => 'nullable|date',
         ]);
 
         if ($request->hasFile('imagem')) {
@@ -56,6 +61,11 @@ class FilmeController extends Controller
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'descricao' => 'nullable|string',
             'classificacao' => 'required|integer',
+            'sala' => 'nullable|string',
+            'horario' => 'nullable|string',
+            'duracao' => 'nullable|integer',
+            'data_inicio' => 'nullable|date',
+            'data_fim' => 'nullable|date',
         ]);
 
         if ($request->hasFile('imagem')) {

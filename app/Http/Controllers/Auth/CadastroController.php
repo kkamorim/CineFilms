@@ -21,6 +21,7 @@ class CadastroController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed', // campo password_confirmation
+            'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $user = new User();
@@ -28,6 +29,9 @@ class CadastroController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->is_gm = false; // usuário comum
+        if ($request->hasFile('profile_image')) {
+            $user->profile_image = $request->file('profile_image')->store('users', 'public');
+        }
         $user->save();
 
         Auth::login($user);
