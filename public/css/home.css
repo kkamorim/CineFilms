@@ -365,6 +365,7 @@
     color: var(--white);
     transition: all var(--transition);
     text-decoration: none;
+    margin-top: auto;
 }
 
 .plan-card.featured .btn-plan,

@@ -78,6 +78,14 @@
                 <h3 class="team-name">Kauã Amorim</h3>
                 <div class="team-role">Front-End Developer</div>
                 <p style="font-size:0.85rem; color:var(--gray-500);">Especialista em UI/UX e design de interfaces focadas no usuário.</p>
+                <div class="social-links-equipe">
+                    <a href="https://github.com/kkamorim" target="_blank" aria-label="Github">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/kauaamorim/" target="_blank" aria-label="Linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
             </div>
 
             <div class="team-card">
@@ -85,6 +93,14 @@
                 <h3 class="team-name">Gabriel Arruda</h3>
                 <div class="team-role">Full Stack Developer</div>
                 <p style="font-size:0.85rem; color:var(--gray-500);">Arquiteto do sistema, integração de APIs e infraestrutura Laravel.</p>
+                <div class="social-links-equipe">
+                    <a href="https://github.com/Gabrielarruda177/" target="_blank" aria-label="Github">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gabriel-arruda-47845b1aa/" target="_blank" aria-label="Linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
             </div>
 
             <div class="team-card">
@@ -92,6 +108,14 @@
                 <h3 class="team-name">Lucas</h3>
                 <div class="team-role">Back-End Developer</div>
                 <p style="font-size:0.85rem; color:var(--gray-500);">Desenvolvimento da lógica de negócios e segurança de dados.</p>
+                <div class="social-links-equipe">
+                    <a href="#" target="_blank" aria-label="Github">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
