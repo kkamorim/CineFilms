@@ -21,7 +21,16 @@ class User extends Authenticatable
         'email',
         'password',
         'is_gm',
-        'profile_image', // <--- This line must be added
+        'role',
+        'profile_image',
+        'data_nascimento',
+        'cpf',
+        'telefone',
+        'cep',
+        'endereco',
+        'bairro',
+        'cidade',
+        'estado',
     ];
 
     /**
@@ -43,4 +52,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_gm' => 'boolean', // cast to boolean
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(MovieHistory::class);
+    }
 }

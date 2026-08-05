@@ -6,53 +6,71 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
+
 class UserSeeder extends Seeder
 {
     public function run()
     {
-        $users = [];
-        // Usamos now() fora do loop para ter um timestamp de referência.
-        $date = now();
+        // 1. Administrador Principal
+        User::updateOrCreate(
+            ['email' => 'admin@cinefilms.com'],
+            [
+                'name' => 'Admin Mestre',
+                'password' => Hash::make('12345678'),
+                'is_gm' => 1,
+                'role' => 'admin',
+                'cpf' => '111.222.333-44',
+                'telefone' => '(11) 98888-7777',
+            ]
+        );
 
-        // 1. O Admin Principal
-        $users[] = [
-            'name' => 'Admin Mestre',
-            'email' => 'admin@cinefilms.com',
-            'profile_image' => null,
-            // Senha: '12345678'
-            'password' => Hash::make('12345678'), 
-            'is_gm' => 1, // Gerente
-            'created_at' => $date,
-            'updated_at' => $date,
-        ];
+        // 2. Coordenador
+        User::updateOrCreate(
+            ['email' => 'coordenador@cinefilms.com'],
+            [
+                'name' => 'Coordenador Maria',
+                'password' => Hash::make('12345678'),
+                'is_gm' => 1,
+                'role' => 'coordenador',
+                'cpf' => '222.333.444-55',
+                'telefone' => '(11) 97777-6666',
+            ]
+        );
 
-        // 2. Um Coordenador (is_gm = 1)
-        $users[] = [
-            'name' => 'Coordenador Maria',
-            'email' => 'maria.coord@cinefilms.com',
-            'profile_image' => null,
-            // Senha: '123456'
-            'password' => Hash::make('123456'), 
-            'is_gm' => 1,
-            'created_at' => $date->copy()->subHours(1),
-            'updated_at' => $date->copy()->subHours(1),
-        ];
+        // 3. Usuário Comum Principal
+        User::updateOrCreate(
+            ['email' => 'user@cinefilms.com'],
+            [
+                'name' => 'Usuário Cliente',
+                'password' => Hash::make('12345678'),
+                'is_gm' => 0,
+                'role' => 'user',
+                'cpf' => '333.444.555-66',
+                'telefone' => '(11) 96666-5555',
+            ]
+        );
         
-        // 3. 498 Usuários Comuns (is_gm = 0)
-        // O loop agora vai até 498 para totalizar 500 usuários.
-        for ($i = 1; $i <= 498; $i++) {
-            $users[] = [
-                'name' => 'Usuario Teste ' . $i,
-                'email' => 'teste' . $i . '@usuario.com',
-                'profile_image' => null,
-                // Senha: '12345678'
-                'password' => Hash::make('12345678'), 
-                'is_gm' => 0, // Usuário Normal
-                'created_at' => $date->copy()->subDays(rand(1, 365)), 
-                'updated_at' => $date->copy()->subDays(rand(1, 365)),
-            ];
-        }
+        // 4. Usuário Teste Legado
+        User::updateOrCreate(
+            ['email' => 'usuario@teste.com'],
+            [
+                'name' => 'Usuário Teste',
+                'password' => Hash::make('12345678'),
+                'is_gm' => 0,
+                'role' => 'user',
+            ]
+        );
 
-        DB::table('users')->insert($users);
+        // 5. Admin GM Legado
+        User::updateOrCreate(
+            ['email' => 'admin@teste.com'],
+            [
+                'name' => 'Admin GM',
+                'password' => Hash::make('12345678'),
+                'is_gm' => 1,
+                'role' => 'admin',
+            ]
+        );
     }
 }

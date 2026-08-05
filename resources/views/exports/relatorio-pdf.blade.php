@@ -79,7 +79,9 @@
 
 <body>
     <div class="logo-area">
-        <img src="{{ asset('img/cinefilms.png') }}" alt="Logo Cinefilms" style="width: 100px; display: block;">
+        @if(file_exists(public_path('img/cinefilms.png')))
+            <img src="{{ public_path('img/cinefilms.png') }}" alt="Logo Cinefilms" style="width: 100px; display: block;">
+        @endif
     </div>
 
     <div class="container">

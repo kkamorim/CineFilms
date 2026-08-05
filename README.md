@@ -1,68 +1,47 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🍿 CineFilms - Sistema de Gestão e Cinema (Plataforma Completa)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Plataforma desenvolvida para gerenciar todas as operações de um cinema, oferecendo desde a compra de ingressos e experiência digital para o cliente até o controle administrativo de sessões, salas, bilheteria e bomboniere.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Este projeto foi estruturado com foco em performance, controle de fluxo de caixa e separação rigorosa de permissões por perfil de usuário:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*   **Backend:** PHP / Laravel
+*   **Banco de Dados:** MySQL
+*   **Interface:** Tailwind CSS / Blade
+*   **Controle de Versão:** Git & GitHub
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 💡 Sobre o Projeto
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+O **CineFilms** automatiza o ecossistema completo de um cinema de rua ou complexo de exibição. Ele elimina filas na bilheteria e na bomboniere ao integrar a venda digital de ingressos e combos, enquanto fornece ferramentas avançadas para a administração gerenciar a grade de programação, o estoque de produtos e o fluxo de caixa em tempo real.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 👥 Perfis de Acesso (Roles)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+O sistema possui uma arquitetura baseada em múltiplos papéis para garantir a segurança e a eficiência operacional:
 
-### Premium Partners
+*   👨‍💼 **Administrador:** Visão gerencial completa do negócio, controle financeiro, relatórios de bilheteria e faturamento da bomboniere, gerenciamento de funcionários, cadastro de salas, sessões, filmes e auditoria de caixa.
+*   🍿 **Operador de Bomboniere / Bilheteria:** Painel rápido para vendas presenciais de balcão (ingressos avulsos, pipocas, refrigerantes e combos), controle de troco e impressão/validação de tickets.
+*   🎟️ **Cliente:** Interface web/mobile interativa onde o usuário consulta os filmes em cartaz, escolhe a sessão, seleciona assentos numerados no mapa da sala, faz pedidos antecipados na bomboniere e realiza o pagamento de forma integrada.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+---
 
-## Contributing
+## ⚙️ Principais Módulos e Funcionalidades
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+*   🎬 **Gestão de Filmes e Sessões:** Cadastro completo de produções, gêneros, classificações indicativas, cartazes, horários e associação direta com as salas de exibição.
+*   💺 **Mapa de Assentos Interativo:** Escolha visual de poltronas numeradas por sessão, garantindo que não haja vendas duplicadas para o mesmo lugar.
+*   🍿 **Gestão de Bomboniere e Estoque:** Controle de produtos alimentícios, insumos, inventário em tempo real e baixa automática de estoque a cada venda realizada (seja no caixa ou antecipada pelo cliente).
+*   💳 **Fluxo de Vendas Unificado:** Integração no carrinho onde o cliente pode comprar o ingresso para o filme e o combo de pipoca em uma única transação.
+*   📊 **Painel Administrativo & Relatórios:** Gráficos de ocupação das salas, filmes mais rentáveis, horários de pico e balanço financeiro diário.
+*   🔒 **Controle de Acessos e Segurança:** Autenticação robusta e proteção contra acessos indevidos a rotas administrativas usando os recursos nativos do Laravel.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📈 Arquitetura
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# CineFilms" 
-"# CineFilms" 
+O sistema foi estruturado seguindo o padrão **MVC (Model-View-Controller)** do Laravel, garantindo código limpo, modularidade e alta capacidade de expansão para novas salas ou formas de pagamento.

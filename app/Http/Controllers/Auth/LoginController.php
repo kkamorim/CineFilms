@@ -26,7 +26,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->is_gm) {
+            if ($user->is_gm || in_array($user->role, ['admin', 'coordenador'])) {
                 return redirect()->intended('/admin/dashboard');
             }
 

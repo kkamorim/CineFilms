@@ -1,367 +1,263 @@
 @extends('template')
 
-@section('title', __('messages.home'))
+@section('title', 'CineFilms - Início')
 
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@endsection
 
 @section('content')
 
-<section class="hero-carousel">
-    <div class="carousel-wrapper">
-        <div class="carousel-track">
-            <div class="hero-slide">
-                <img src="{{ asset('img/sala3.png') }}" alt="Cinema" class="hero-img"/>
-                <div class="hero-overlay"></div>
-                <div class="hero-content">
-                    <h1 class="hero-title">{{ __('messages.hero.title') }}</h1>
-                    <p class="hero-subtitle">{{ __('messages.hero.subtitle') }}</p>
-                    <div class="hero-cta">
-                        <a href="{{ route('filmes') }}" class="btn-primary">{{ __('messages.hero.see_movies') }}</a>
-                        <a href="{{ url('/sobre') }}" class="btn-secondary">{{ __('messages.hero.confectionery') }}</a>
-                    </div>
-                </div>
+<!-- HERO BANNER -->
+<section class="hero-section">
+    <div class="container hero-container">
+        <div class="hero-text-side">
+            <div class="hero-badge">
+                <i class="fas fa-sparkles"></i> Cinema de Alta Qualidade
+            </div>
+            <h1 class="hero-title">
+                Viva o Cinema em <span>Dimensão Real</span>
+            </h1>
+            <p class="hero-subtitle">
+                Salas premium com projeção 4K, tecnologia áudio Dolby Atmos e poltronas reclináveis ultra confortáveis. Reserve seu ingresso online sem filas.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ route('filme-em-cartaz') }}" class="btn btn-primary">
+                    <i class="fas fa-ticket-alt"></i> Ver Filmes em Cartaz
+                </a>
+                <a href="{{ url('/sobre') }}" class="btn btn-outline">
+                    <i class="fas fa-popcorn"></i> Bombonière
+                </a>
             </div>
         </div>
-    </div>
-    <div class="scroll-indicator">
-        <span></span>
-    </div>
-</section>
 
-<section class="featured-movies">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">{{ __('messages.movies.in_theaters') }}</h2>
-            <p class="section-subtitle">{{ __('messages.movies.in_theaters_subtitle') }}</p>
-        </div>
-
-        <div class="carousel-3d-wrapper">
-            <button class="carousel-control prev-control" aria-label="Anterior">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            <div class="carousel-3d-container">
-                <div class="carousel-3d">
-                    @forelse($filmesEmCartaz as $filme)
-                        <div class="movie-card-3d">
-                            <a href="{{ route('filmes') }}" class="movie-link">
-                                <div class="movie-poster">
-                                    <img src="{{ asset('storage/' . $filme->imagem) }}" alt="{{ $filme->titulo }}">
-                                    <div class="movie-overlay">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>{{ __('messages.movies.see_details') }}</span>
-                                    </div>
-                                </div>
-                                <div class="movie-info">
-                                    <h3 class="movie-title">{{ $filme->titulo }}</h3>
-                                    <div class="movie-badge">{{ __('messages.movies.badge_in_theaters') }}</div>
-                                </div>
-                            </a>
-                        </div>
-                    @empty
-                        <p class="no-movies">{{ __('messages.movies.no_movies') }}</p>
-                    @endforelse
+        <div class="hero-card-preview">
+            @if(isset($filmeDestaque) && $filmeDestaque)
+                <img src="{{ asset('storage/' . $filmeDestaque->imagem) }}" alt="{{ $filmeDestaque->titulo }}" onerror="this.src='{{ asset('img/Invocacao.jpg') }}'">
+                <div class="hero-card-overlay">
+                    <h3>{{ $filmeDestaque->titulo }}</h3>
+                    <p>{{ $filmeDestaque->genero }} • {{ $filmeDestaque->duracao ?? '120' }} min</p>
                 </div>
-            </div>
-
-            <button class="carousel-control next-control" aria-label="Próximo">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+            @else
+                <img src="{{ asset('img/Invocacao.jpg') }}" alt="Filme em Destaque">
+                <div class="hero-card-overlay">
+                    <h3>Invocação do Mal 4</h3>
+                    <p>Terror • 129 min • Sala 01 VIP</p>
+                </div>
+            @endif
         </div>
     </div>
 </section>
 
-<section class="upcoming-movies">
+<!-- SEÇÃO EM CARTAZ -->
+<section class="featured-section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">{{ __('messages.upcoming.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.upcoming.subtitle') }}</p>
+            <h2 class="section-title">Em Cartaz Hoje</h2>
+            <p class="section-subtitle">Confira os lançamentos mais aguardados e garanta o seu lugar na sessão perfeita.</p>
         </div>
 
         <div class="movies-grid">
-            <article class="movie-card modern">
-                <div class="card-image">
-                    <img src="{{ asset('img/Invocacao.jpg') }}" alt="Invocação do Mal 4">
-                    <div class="card-badge">{{ __('messages.upcoming.badge_coming_soon') }}</div>
-                    <div class="card-overlay">
-                        <button class="btn-watch">
-                            <i class="fas fa-ticket-alt"></i>
-                            {{ __('messages.upcoming.buy_ticket') }}
-                        </button>
+            @forelse($filmesEmCartaz as $filme)
+                <article class="movie-card">
+                    <div class="movie-poster-wrap">
+                        <img src="{{ asset('storage/' . $filme->imagem) }}" alt="{{ $filme->titulo }}" onerror="this.src='{{ asset('img/filme1.png') }}'">
+                        <div class="movie-rating-tag">
+                            <i class="fas fa-star"></i> {{ $filme->classificacao ?? '12' }}
+                        </div>
                     </div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Invocação do Mal 4: O Último Ritual</h3>
-                    <div class="card-meta">
-                        <span class="rating">
-                            <i class="fas fa-star"></i> 12
-                        </span>
-                        <span class="duration">
-                            <i class="far fa-clock"></i> 2h 29m
-                        </span>
+                    <div class="movie-info">
+                        <h3 class="movie-title">{{ $filme->titulo }}</h3>
+                        <p class="movie-genre">{{ $filme->genero }}</p>
+                        <div class="movie-footer">
+                            <span style="font-size: 0.8rem; color: var(--gray-500);">
+                                <i class="far fa-clock"></i> {{ $filme->duracao ?? '120' }} min
+                            </span>
+                            <a href="{{ route('filme-em-cartaz') }}" class="btn-buy-sm">Comprar</a>
+                        </div>
                     </div>
-                    <p class="card-cast">
-                        <i class="fas fa-users"></i>
-                        Vera Farmiga, Patrick Wilson, Mia Tomlinson
-                    </p>
-                    <div class="card-genre">
-                        <span class="genre-tag">Terror</span>
+                </article>
+            @empty
+                <!-- Fallback de Filmes quando banco estiver sem registros -->
+                <article class="movie-card">
+                    <div class="movie-poster-wrap">
+                        <img src="{{ asset('img/Invocacao.jpg') }}" alt="Invocação do Mal 4">
+                        <div class="movie-rating-tag"><i class="fas fa-star"></i> 16</div>
                     </div>
-                </div>
-            </article>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Invocação do Mal 4</h3>
+                        <p class="movie-genre">Terror / Suspense</p>
+                        <div class="movie-footer">
+                            <span style="font-size: 0.8rem; color: var(--gray-500);"><i class="far fa-clock"></i> 129 min</span>
+                            <a href="{{ route('filme-em-cartaz') }}" class="btn-buy-sm">Comprar</a>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="movie-card modern">
-                <div class="card-image">
-                    <img src="{{ asset('img/Rei_Feira.jpg') }}" alt="O Rei da Feira">
-                    <div class="card-badge">{{ __('messages.upcoming.badge_coming_soon') }}</div>
-                    <div class="card-overlay">
-                        <button class="btn-watch">
-                            <i class="fas fa-ticket-alt"></i>
-                            {{ __('messages.upcoming.buy_ticket') }}
-                        </button>
+                <article class="movie-card">
+                    <div class="movie-poster-wrap">
+                        <img src="{{ asset('img/superman.webp') }}" alt="Superman">
+                        <div class="movie-rating-tag"><i class="fas fa-star"></i> 12</div>
                     </div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">O Rei da Feira</h3>
-                    <div class="card-meta">
-                        <span class="rating">
-                            <i class="fas fa-star"></i> 14
-                        </span>
-                        <span class="duration">
-                            <i class="far fa-clock"></i> 1h 27m
-                        </span>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Superman: Legacy</h3>
+                        <p class="movie-genre">Ação / Aventura</p>
+                        <div class="movie-footer">
+                            <span style="font-size: 0.8rem; color: var(--gray-500);"><i class="far fa-clock"></i> 142 min</span>
+                            <a href="{{ route('filme-em-cartaz') }}" class="btn-buy-sm">Comprar</a>
+                        </div>
                     </div>
-                    <p class="card-cast">
-                        <i class="fas fa-users"></i>
-                        Leandro Hassum, Pedro Wagner, Luana Martau
-                    </p>
-                    <div class="card-genre">
-                        <span class="genre-tag">Comédia</span>
-                    </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="movie-card modern">
-                <div class="card-image">
-                    <img src="{{ asset('img/Caras_Malvados.webp') }}" alt="Os Caras Malvados 2">
-                    <div class="card-badge">{{ __('messages.upcoming.badge_coming_soon') }}</div>
-                    <div class="card-overlay">
-                        <button class="btn-watch">
-                            <i class="fas fa-ticket-alt"></i>
-                            {{ __('messages.upcoming.buy_ticket') }}
-                        </button>
+                <article class="movie-card">
+                    <div class="movie-poster-wrap">
+                        <img src="{{ asset('img/quarteto.webp') }}" alt="Quarteto Fantástico">
+                        <div class="movie-rating-tag"><i class="fas fa-star"></i> 12</div>
                     </div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Os Caras Malvados 2</h3>
-                    <div class="card-meta">
-                        <span class="rating">
-                            <i class="fas fa-star"></i> L
-                        </span>
-                        <span class="duration">
-                            <i class="far fa-clock"></i> 1h 44m
-                        </span>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Quarteto Fantástico</h3>
+                        <p class="movie-genre">Ação / Sci-Fi</p>
+                        <div class="movie-footer">
+                            <span style="font-size: 0.8rem; color: var(--gray-500);"><i class="far fa-clock"></i> 135 min</span>
+                            <a href="{{ route('filme-em-cartaz') }}" class="btn-buy-sm">Comprar</a>
+                        </div>
                     </div>
-                    <p class="card-cast">
-                        <i class="fas fa-users"></i>
-                        Sam Rockwell, Craig Robinson, Anthony Ramos
-                    </p>
-                    <div class="card-genre">
-                        <span class="genre-tag">Animação</span>
-                        <span class="genre-tag">Família</span>
+                </article>
+
+                <article class="movie-card">
+                    <div class="movie-poster-wrap">
+                        <img src="{{ asset('img/Rei_Feira.jpg') }}" alt="O Rei da Feira">
+                        <div class="movie-rating-tag"><i class="fas fa-star"></i> 10</div>
                     </div>
-                </div>
-            </article>
+                    <div class="movie-info">
+                        <h3 class="movie-title">O Rei da Feira</h3>
+                        <p class="movie-genre">Comédia</p>
+                        <div class="movie-footer">
+                            <span style="font-size: 0.8rem; color: var(--gray-500);"><i class="far fa-clock"></i> 98 min</span>
+                            <a href="{{ route('filme-em-cartaz') }}" class="btn-buy-sm">Comprar</a>
+                        </div>
+                    </div>
+                </article>
+            @endforelse
         </div>
     </div>
 </section>
 
-<!-- SEÇÃO DE BENEFÍCIOS -->
-<section class="benefits">
+<!-- SEÇÃO PLANOS CINEFILMS (AZUL ESCURO PREMIUM CONTRASTE) -->
+<section class="plans-section">
     <div class="container">
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-couch"></i>
-                </div>
-                <h3>{{ __('messages.benefits.premium_seats.title') }}</h3>
-                <p>{{ __('messages.benefits.premium_seats.description') }}</p>
+        <div class="section-header dark-header">
+            <h2 class="section-title text-white">Planos CineFilms</h2>
+            <p class="section-subtitle text-light">Assine e tenha vantagens exclusivas, ingressos com desconto e benefícios na bombonière.</p>
+        </div>
+
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3 class="plan-name">CineMeia</h3>
+                <div class="plan-price">R$ 14,90 <span>/mês</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> Meia-entrada em qualquer dia</li>
+                    <li><i class="fas fa-check-circle"></i> 10% de desconto na Bombonière</li>
+                    <li><i class="fas fa-check-circle"></i> Reserva antecipada de assentos</li>
+                </ul>
+                <a href="{{ route('filme-em-cartaz') }}" class="btn-plan">Escolher Plano</a>
             </div>
 
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-film"></i>
-                </div>
-                <h3>{{ __('messages.benefits.projection_4k.title') }}</h3>
-                <p>{{ __('messages.benefits.projection_4k.description') }}</p>
+            <div class="plan-card featured">
+                <div class="plan-badge">Mais Popular</div>
+                <h3 class="plan-name">CinePass VIP</h3>
+                <div class="plan-price">R$ 29,90 <span>/mês</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> 2 ingressos grátis por mês</li>
+                    <li><i class="fas fa-check-circle"></i> Meia-entrada em ingressos adicionais</li>
+                    <li><i class="fas fa-check-circle"></i> 20% de desconto na Bombonière</li>
+                    <li><i class="fas fa-check-circle"></i> Upgrade gratuito para salas 3D</li>
+                </ul>
+                <a href="{{ route('filme-em-cartaz') }}" class="btn-plan">Assinar VIP</a>
             </div>
 
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-popcorn"></i>
-                </div>
-                <h3>{{ __('messages.benefits.premium_confectionery.title') }}</h3>
-                <p>{{ __('messages.benefits.premium_confectionery.description') }}</p>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>{{ __('messages.benefits.digital_ticket.title') }}</h3>
-                <p>{{ __('messages.benefits.digital_ticket.description') }}</p>
+            <div class="plan-card">
+                <h3 class="plan-name">CineFamília</h3>
+                <div class="plan-price">R$ 49,90 <span>/mês</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check-circle"></i> 4 ingressos grátis por mês</li>
+                    <li><i class="fas fa-check-circle"></i> Desconto especial em Combos Família</li>
+                    <li><i class="fas fa-check-circle"></i> Isenção de taxa de serviço online</li>
+                </ul>
+                <a href="{{ route('filme-em-cartaz') }}" class="btn-plan">Escolher Plano</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="partners">
+<!-- SEÇÃO BOMBONIÈRE PREVIEW (COM IMAGENS REAIS DE COMIDAS) -->
+<section class="bomboniere-preview-section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">{{ __('messages.partners.title') }}</h2>
-            <p class="section-subtitle">{{ __('messages.partners.subtitle') }}</p>
+            <h2 class="section-title">Acompanhamentos Perfeitos</h2>
+            <p class="section-subtitle">Sua experiência de cinema fica completa com nossas pipocas quentinhas e bebidas geladas.</p>
         </div>
-        <div class="partners-grid">
-            <div class="partner-logo">
-                <img src="{{ asset('img/Cinepolis.png') }}" alt="Cinépolis">
+
+        <div class="bomboniere-grid">
+            <div class="b-item-card">
+                <div class="b-item-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1578849278619-e73505e9610f?auto=format&fit=crop&w=600&q=80" alt="Combo Salgado P">
+                </div>
+                <div class="b-item-body">
+                    <h3 class="b-item-title">Combo Salgado P</h3>
+                    <p class="b-item-desc">Pipoca Salgada Pequena + Refrigerante 500ml</p>
+                    <div class="b-item-footer">
+                        <span class="b-item-price">R$ 28,00</span>
+                        <a href="{{ url('/sobre') }}" class="btn-buy-sm">Pedir</a>
+                    </div>
+                </div>
             </div>
 
-           <div class="partner-logo">
-                <img src="{{ asset('img/codeflix-black.png') }}" alt="codeflix">
+            <div class="b-item-card">
+                <div class="b-item-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?auto=format&fit=crop&w=600&q=80" alt="Combo Duplo VIP">
+                </div>
+                <div class="b-item-body">
+                    <h3 class="b-item-title">Combo Duplo VIP</h3>
+                    <p class="b-item-desc">Pipoca Grande + 2 Refrigerantes 700ml</p>
+                    <div class="b-item-footer">
+                        <span class="b-item-price">R$ 45,00</span>
+                        <a href="{{ url('/sobre') }}" class="btn-buy-sm">Pedir</a>
+                    </div>
+                </div>
             </div>
-    
-            <div class="partner-logo">
-                <img src="{{ asset('img/cinemark.svg') }}" alt="Cinemark">
+
+            <div class="b-item-card">
+                <div class="b-item-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?auto=format&fit=crop&w=600&q=80" alt="Combo Doce Especial">
+                </div>
+                <div class="b-item-body">
+                    <h3 class="b-item-title">Combo Doce Especial</h3>
+                    <p class="b-item-desc">Pipoca Doce Grande + M&M's + Bebida</p>
+                    <div class="b-item-footer">
+                        <span class="b-item-price">R$ 38,00</span>
+                        <a href="{{ url('/sobre') }}" class="btn-buy-sm">Pedir</a>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="{{ url('/sobre') }}" class="btn btn-primary">
+                <i class="fas fa-store"></i> Ver Cardápio Completo
+            </a>
         </div>
     </div>
 </section>
 
-@endsection
+<!-- PARCEIROS (SEM LOGO CODEFLIX) -->
+<section class="partners-section">
+    <div class="container">
+        <div class="partners-logos">
+            <div class="partner-box"><img src="{{ asset('img/Cinepolis.png') }}" alt="Cinépolis"></div>
+            <div class="partner-box"><img src="{{ asset('img/cinemark.svg') }}" alt="Cinemark"></div>
+        </div>
+    </div>
+</section>
 
-@section('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.querySelector('.carousel-3d');
-    const cards = Array.from(document.querySelectorAll('.movie-card-3d'));
-    const nextBtn = document.querySelector('.next-control');
-    const prevBtn = document.querySelector('.prev-control');
-
-    if (!carousel || cards.length === 0) return;
-
-    const total = cards.length;
-    let currentIndex = 0;
-    let isAnimating = false;
-
-    // Coverflow layout config
-    const CARD_GAP     = 290;   // px between card centers
-    const SIDE_SCALE   = 0.78;  // scale for adjacent cards
-    const SIDE_OPACITY = 0.55;
-
-    // Build dot indicators
-    const dotsContainer = document.createElement('div');
-    dotsContainer.className = 'carousel-dots';
-    for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Ir para filme ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-    }
-    carousel.closest('.carousel-3d-wrapper').appendChild(dotsContainer);
-
-    function updateDots() {
-        dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
-
-    function positionCards() {
-        cards.forEach((card, i) => {
-            let offset = i - currentIndex;
-            // Wrap around for circular effect
-            if (offset > total / 2)  offset -= total;
-            if (offset < -total / 2) offset += total;
-
-            const translateX = offset * CARD_GAP;
-            const isActive   = offset === 0;
-            const absOffset  = Math.abs(offset);
-            const visible    = absOffset <= 2;
-
-            const scale   = isActive ? 1 : Math.max(0.55, SIDE_SCALE - Math.max(0, absOffset - 1) * 0.06);
-            const opacity = isActive ? 1 : Math.max(0, SIDE_OPACITY - Math.max(0, absOffset - 1) * 0.2);
-            const zIndex  = isActive ? 10 : Math.max(0, 5 - absOffset);
-
-            card.style.transform    = `translateX(${translateX}px) scale(${scale})`;
-            card.style.opacity      = visible ? opacity : 0;
-            card.style.zIndex       = zIndex;
-            card.style.pointerEvents = isActive ? 'auto' : 'none';
-            card.classList.toggle('active', isActive);
-        });
-
-        updateDots();
-    }
-
-    function goTo(index) {
-        if (isAnimating) return;
-        isAnimating = true;
-        currentIndex = ((index % total) + total) % total;
-        positionCards();
-        setTimeout(() => { isAnimating = false; }, 520);
-    }
-
-    function rotateCarousel(direction) {
-        const next = direction === 'next'
-            ? (currentIndex + 1) % total
-            : (currentIndex - 1 + total) % total;
-        goTo(next);
-    }
-
-    nextBtn?.addEventListener('click', () => rotateCarousel('next'));
-    prevBtn?.addEventListener('click', () => rotateCarousel('prev'));
-
-    // Touch / swipe support
-    let touchStartX = 0;
-    carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    carousel.addEventListener('touchend', e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) rotateCarousel(diff > 0 ? 'next' : 'prev');
-    });
-
-    // Auto-rotate
-    let autoRotate = setInterval(() => rotateCarousel('next'), 4500);
-    carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
-    carousel.addEventListener('mouseleave', () => {
-        autoRotate = setInterval(() => rotateCarousel('next'), 4500);
-    });
-
-    positionCards();
-});
-
-window.addEventListener('scroll', function() {
-    const indicator = document.querySelector('.scroll-indicator');
-    if (indicator) {
-        indicator.style.opacity = window.scrollY > 100 ? '0' : '1';
-    }
-});
-
-const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('animate-in');
-            }, index * 100);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.movie-card, .benefit-card, .partner-logo').forEach(el => {
-    observer.observe(el);
-});
-</script>
 @endsection

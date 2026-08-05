@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Filme;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ExportController extends Controller
@@ -128,48 +129,40 @@ class ExportController extends Controller
      */
     public function exportPDF()
     {
-        $filmes = Filme::all();
-        $totalFilmes = $filmes->count();
-        $totalUsuarios = User::count();
+        try {
+            $filmes = Filme::all();
+            $totalFilmes = $filmes->count();
+            $totalUsuarios = User::count();
 
-        // Estatísticas
-        $filmesPorGenero = Filme::select('genero', DB::raw('COUNT(*) as total'))
-            ->groupBy('genero')
-            ->get();
+            // Estatísticas por Gênero
+            $filmesPorGenero = Filme::select('genero', DB::raw('COUNT(*) as total'))
+                ->groupBy('genero')
+                ->get();
 
-        $filmesPorClassificacao = Filme::select('classificacao', DB::raw('COUNT(*) as total'))
-            ->groupBy('classificacao')
-            ->orderBy('classificacao')
-            ->get();
+            // Estatísticas por Classificação
+            $filmesPorClassificacao = Filme::select('classificacao', DB::raw('COUNT(*) as total'))
+                ->groupBy('classificacao')
+                ->orderBy('classificacao')
+                ->get();
 
-        $usuariosPorMes = User::select(
-            DB::raw('MONTH(created_at) as mes'),
-            DB::raw('COUNT(*) as total')
-        )
-        ->groupBy(DB::raw('MONTH(created_at)'))
-        ->orderBy(DB::raw('MONTH(created_at)'))
-        ->get();
+            $data = [
+                'totalFilmes' => $totalFilmes,
+                'totalUsuarios' => $totalUsuarios,
+                'filmes' => $filmes,
+                'filmesPorGenero' => $filmesPorGenero,
+                'filmesPorClassificacao' => $filmesPorClassificacao,
+                'dataRelatorio' => date('d/m/Y H:i:s')
+            ];
 
-        $meses = [
-            1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril',
-            5 => 'Maio', 6 => 'Junho', 7 => 'Julho', 8 => 'Agosto',
-            9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'
-        ];
+            $pdf = Pdf::loadView('exports.relatorio-pdf', $data);
+            $pdf->setPaper('A4', 'portrait');
+            $pdf->setOption('isRemoteEnabled', true);
+            $pdf->setOption('isHtml5ParserEnabled', true);
 
-        $data = [
-            'totalFilmes' => $totalFilmes,
-            'totalUsuarios' => $totalUsuarios,
-            'filmes' => $filmes,
-            'filmesPorGenero' => $filmesPorGenero,
-            'filmesPorClassificacao' => $filmesPorClassificacao,
-            'usuariosPorMes' => $usuariosPorMes,
-            'meses' => $meses,
-            'dataRelatorio' => date('d/m/Y H:i:s')
-        ];
-
-        $pdf = Pdf::loadView('exports.relatorio-pdf', $data);
-        $pdf->setPaper('A4', 'portrait');
-
-        return $pdf->download('relatorio_cinefilms_' . date('Y-m-d_His') . '.pdf');
+            return $pdf->download('relatorio_cinefilms_' . date('Y-m-d_His') . '.pdf');
+        } catch (\Exception $e) {
+            Log::error('Erro no ExportPDF: ' . $e->getMessage());
+            return back()->withErrors(['export' => 'Erro ao gerar PDF: ' . $e->getMessage()]);
+        }
     }
 }
